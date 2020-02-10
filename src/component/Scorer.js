@@ -13,14 +13,16 @@ export default class Scorer extends React.Component {
             this.setState({ scoreText: this.updateScore() });
     }
 
-    isPropsChanged = prevProps => {
-        return prevProps.player1Score !== this.props.player1Score;
+    isPropsChanged = (prevProps) => {
+        return prevProps.player1Score !== this.props.player1Score || prevProps.player2Score !== this.props.player2Score;
     }
 
     updateScore = () => {
-        const { player1Score } = this.props;
+        const { player1Score, player2Score } = this.props;
 
-        if (player1Score <= Constants.MAX_LOOKUP_INDEX)
+        if (player1Score === 0 && player2Score === 1)
+            return Constants.PLAYER2_SCORED_ONCE;
+        if (player1Score <= Constants.MAX_LOOKUP_INDEX && player2Score === 0)
             return Constants.SCORE_LOOKUP[player1Score] + Constants.COMMA_LOVE;
     }
 
@@ -35,5 +37,6 @@ export default class Scorer extends React.Component {
 }
 
 Scorer.propTypes = {
-    player1Score: PropTypes.number.isRequired
+    player1Score: PropTypes.number.isRequired,
+    player2Score: PropTypes.number.isRequired
 }
