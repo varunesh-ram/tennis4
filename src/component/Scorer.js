@@ -20,6 +20,8 @@ export default class Scorer extends React.Component {
     updateScore = () => {
         const { player1Score, player2Score } = this.props;
 
+        if (player1Score === 0 && player2Score === 2)
+            return Constants.PLAYER2_SCORED_TWICE;
         if (player1Score === 0 && player2Score === 1)
             return Constants.PLAYER2_SCORED_ONCE;
         if (player1Score <= Constants.MAX_LOOKUP_INDEX && player2Score === 0)
