@@ -18,13 +18,11 @@ export default class Scorer extends React.Component {
     }
 
     updateScore = () => {
-        const { player1Score, player2Score } = this.props;
-
-        if (player1Score !== player2Score) {
-            if (player1Score > Constants.MAX_LOOKUP_INDEX || player2Score > Constants.MAX_LOOKUP_INDEX) {
+        if (this.isPlayersScoreNotEqual()) {
+            if (this.isEitherPlayerScoredMorethanLookUpScore()) {
                 if (this.isAdvantage())
                     return this.getAdvantageScore();
-                return this.getPlayerWithHighestScore() + Constants.WINS;
+                return this.getWinnerScore();
             }
             return this.getScoreFromLookUp();
         }
@@ -32,6 +30,18 @@ export default class Scorer extends React.Component {
             return Constants.DEUCE;
         }
         return this.getAllScoreFromLookUp();
+    }
+
+    isPlayersScoreNotEqual = () => {
+        return this.props.player1Score !== this.props.player2Score;
+    }
+
+    isEitherPlayerScoredMorethanLookUpScore = () => {
+        return this.props.player1Score > Constants.MAX_LOOKUP_INDEX || this.props.player2Score > Constants.MAX_LOOKUP_INDEX;
+    }
+
+    getWinnerScore = () => {
+        return this.getPlayerWithHighestScore() + Constants.WINS;
     }
 
     isAdvantage = () => {
