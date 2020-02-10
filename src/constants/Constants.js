@@ -6,5 +6,6 @@ export const Constants = {
     COMMA: ",",
     MAX_LOOKUP_INDEX: 3,
     ALL: " all",
+    DEUCE: "Deuce",
     SCORER_HEADER: "Score"
 };
