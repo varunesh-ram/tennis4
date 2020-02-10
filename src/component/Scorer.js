@@ -18,18 +18,11 @@ export default class Scorer extends React.Component {
     }
 
     updateScore = () => {
-        if (this.isPlayersScoreNotEqual()) {
-            if (this.isEitherPlayerScoredMorethanLookUpScore()) {
-                if (this.isAdvantage())
-                    return this.getAdvantageScore();
-                return this.getWinnerScore();
-            }
-            return this.getScoreFromLookUp();
-        }
-        if (this.isDeuce()) {
-            return Constants.DEUCE;
-        }
-        return this.getAllScoreFromLookUp();
+        return this.isPlayersScoreNotEqual() ?
+            this.isEitherPlayerScoredMorethanLookUpScore() ?
+                this.isAdvantage() ? this.getAdvantageScore() : this.getWinnerScore() :
+                this.getScoreFromLookUp() :
+            this.isDeuce() ? Constants.DEUCE : this.getAllScoreFromLookUp();
     }
 
     isPlayersScoreNotEqual = () => {
