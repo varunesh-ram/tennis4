@@ -7,5 +7,6 @@ export const Constants = {
     MAX_LOOKUP_INDEX: 3,
     ALL: " all",
     DEUCE: "Deuce",
+    ADVANTAGE_PLAYER1: "Advantage Player 1",
     SCORER_HEADER: "Score"
 };
