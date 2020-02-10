@@ -9,8 +9,12 @@ export default class Scorer extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.player1Score !== this.props.player1Score)
+        if (this.isPropsChanged(prevProps))
             this.setState({ scoreText: this.updateScore() });
+    }
+
+    isPropsChanged = prevProps => {
+        return prevProps.player1Score !== this.props.player1Score;
     }
 
     updateScore = () => {
