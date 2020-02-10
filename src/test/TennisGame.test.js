@@ -17,6 +17,9 @@ describe(("<TennisGame/> component"), () => {
     expect(wrapper.find(Player).length).toBe(2);
     expect(wrapper.find(Scorer).length).toBe(1);
   });
+  it("should have a reset Button to rest the Game", () => {
+    expect(wrapper.find("button").at(2).text()).toEqual("Reset Game");
+  });
 });
 describe(("<TennisGame/> Game functionality"), () => {
   let wrapper, scoreLabel, player1ScoreButton, player2ScoreButton;
@@ -124,5 +127,24 @@ describe(("<TennisGame/> Game functionality"), () => {
     player2ScoreButton.simulate('click');
     player2ScoreButton.simulate('click');
     expect(scoreLabel.text()).toEqual("Player 2 wins");
+  });
+  it("On Player 1 Scores thrice and Player 2 scores five times, Score Should be Player 2 wins", () => {
+    player1ScoreButton.simulate('click');
+    player1ScoreButton.simulate('click');
+    player1ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    expect(scoreLabel.text()).toEqual("Player 2 wins");
+  });
+  it("On Reset the Game, Score Should be Love All", () => {
+    player1ScoreButton.simulate('click');
+    player1ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    wrapper.find("button").at(2).simulate('click');
+    expect(scoreLabel.text()).toEqual("Love all");
   });
 });

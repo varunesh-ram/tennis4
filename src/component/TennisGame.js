@@ -1,6 +1,7 @@
 import React from 'react';
 import Player from './Player';
 import Scorer from './Scorer';
+import { Constants } from '../constants/Constants';
 
 export default class TennisGame extends React.Component {
     constructor(props) {
@@ -33,6 +34,20 @@ export default class TennisGame extends React.Component {
         }));
     }
 
+    resetGame = () => {
+        this.setState({
+            player1: {
+                name: "Player 1",
+                score: 0
+            },
+            player2: {
+                name: "Player 2",
+                score: 0
+            },
+            isGameOver: false
+        });
+    }
+
     render() {
         const { player1, player2 } = this.state;
         return (
@@ -44,6 +59,7 @@ export default class TennisGame extends React.Component {
                     <Player name={player2.name} onUpdateScore={this.incrementScore} isGameOver={this.state.isGameOver} />
                 </div>
                 <Scorer player1Score={player1.score} player2Score={player2.score} onGameOver={this.notifyGameOver} />
+                <br /><button onClick={this.resetGame}>{Constants.RESET_BUTTON_TEXT}</button>
             </div>);
     }
 }
