@@ -60,4 +60,10 @@ describe(("<TennisGame/> Game functionality"), () => {
     player2ScoreButton.simulate('click');
     expect(scoreLabel.text()).toEqual("Love,Forty");
   });
+  it("On Player 1 Scores twice and Player 2 Scores once, Score Should be Thirty Fifteen", () => {
+    player1ScoreButton.simulate('click');
+    player1ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    expect(scoreLabel.text()).toEqual("Thirty,Fifteen");
+  });
 });
