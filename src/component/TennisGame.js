@@ -13,7 +13,8 @@ export default class TennisGame extends React.Component {
             player2: {
                 name: "Player 2",
                 score: 0
-            }
+            },
+            isGameOver: false
         }
     }
 
@@ -23,8 +24,13 @@ export default class TennisGame extends React.Component {
                 player1: { ...prevState.player1, score: prevState.player1.score + 1 }
             } : {
                     player2: { ...prevState.player2, score: prevState.player2.score + 1 }
-                }
-        ));
+                }));
+    }
+
+    notifyGameOver = () => {
+        this.setState((prevState, props) => ({
+            isGameOver: !prevState.isGameOver
+        }));
     }
 
     render() {
@@ -33,11 +39,11 @@ export default class TennisGame extends React.Component {
             <div>
                 <div className="playerContainer">
                     <div className="leftContainer">
-                        <Player name={player1.name} onUpdateScore={this.incrementScore} />
+                        <Player name={player1.name} onUpdateScore={this.incrementScore} isGameOver={this.state.isGameOver} />
                     </div>
-                    <Player name={player2.name} onUpdateScore={this.incrementScore} />
+                    <Player name={player2.name} onUpdateScore={this.incrementScore} isGameOver={this.state.isGameOver} />
                 </div>
-                <Scorer player1Score={player1.score} player2Score={player2.score} />
+                <Scorer player1Score={player1.score} player2Score={player2.score} onGameOver={this.notifyGameOver} />
             </div>);
     }
 }

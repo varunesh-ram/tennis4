@@ -34,6 +34,7 @@ export default class Scorer extends React.Component {
     }
 
     getWinnerScore = () => {
+        this.props.onGameOver();
         return this.getPlayerWithHighestScore() + Constants.WINS;
     }
 
@@ -74,5 +75,6 @@ export default class Scorer extends React.Component {
 
 Scorer.propTypes = {
     player1Score: PropTypes.number.isRequired,
-    player2Score: PropTypes.number.isRequired
+    player2Score: PropTypes.number.isRequired,
+    onGameOver: PropTypes.func.isRequired
 }
