@@ -24,6 +24,8 @@ export default class Scorer extends React.Component {
             if (player1Score > Constants.MAX_LOOKUP_INDEX || player2Score > Constants.MAX_LOOKUP_INDEX) {
                 if (this.isAdvantage())
                     return this.getAdvantageScore();
+                if (player1Score > player2Score)
+                    return Constants.PLAYER1_WINS;
             }
             if (player1Score <= Constants.MAX_LOOKUP_INDEX && player2Score <= Constants.MAX_LOOKUP_INDEX)
                 return this.getScoreFromLookUp();
