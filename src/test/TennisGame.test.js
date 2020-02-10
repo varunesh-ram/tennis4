@@ -87,7 +87,7 @@ describe(("<TennisGame/> Game functionality"), () => {
     player2ScoreButton.simulate('click');
     expect(scoreLabel.text()).toEqual("Deuce");
   });
-  it("On Player 1 Scores four times and Player 2 Scores three times, Score Should be Advantage Player 1", () => {
+  it("On Player 1 Scores four times and Player 2 Scores thrice, Score Should be Advantage Player 1", () => {
     player1ScoreButton.simulate('click');
     player1ScoreButton.simulate('click');
     player1ScoreButton.simulate('click');
@@ -96,5 +96,15 @@ describe(("<TennisGame/> Game functionality"), () => {
     player2ScoreButton.simulate('click');
     player1ScoreButton.simulate('click');
     expect(scoreLabel.text()).toEqual("Advantage Player 1");
+  });
+  it("On Player 1 Scores thrice and Player 2 Scores four times, Score Should be Advantage Player 2", () => {
+    player1ScoreButton.simulate('click');
+    player1ScoreButton.simulate('click');
+    player1ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    player2ScoreButton.simulate('click');
+    expect(scoreLabel.text()).toEqual("Advantage Player 2");
   });
 });
