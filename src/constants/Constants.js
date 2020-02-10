@@ -5,6 +5,7 @@ export const Constants = {
     SCORE_LOOKUP: ["Love", "Fifteen", "Thirty", "Forty"],
     PLAYER2_SCORED_ONCE: "Love,Fifteen",
     PLAYER2_SCORED_TWICE: "Love,Thirty",
+    PLAYER2_SCORED_THRICE: "Love,Forty",
     COMMA_LOVE: ",Love",
     MAX_LOOKUP_INDEX: 3,
     SCORER_HEADER: "Score"
