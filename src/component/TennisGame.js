@@ -18,7 +18,7 @@ export default class TennisGame extends React.Component {
     }
 
     incrementScore = () => {
-        this.setState((prevState) => ({ player1: { ...prevState.player1, score: 1 } }));
+        this.setState((prevState) => ({ player1: { ...prevState.player1, score: prevState.player1.score + 1 } }));
     }
 
     render() {
