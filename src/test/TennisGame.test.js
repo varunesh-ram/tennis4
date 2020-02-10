@@ -38,14 +38,11 @@ describe(("<TennisGame/> Game functionality"), () => {
     expect(scoreLabel.text()).toEqual("Fifteen,Love");
   });
   it("On Player 1 Scores twice, Score Should be Thirty Love", () => {
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
+    clickThe(player1ScoreButton, 2);
     expect(scoreLabel.text()).toEqual("Thirty,Love");
   });
   it("On Player 1 Scores thrice, Score Should be Forty Love", () => {
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
+    clickThe(player1ScoreButton, 3);
     expect(scoreLabel.text()).toEqual("Forty,Love");
   });
   it("On Player 2 Scores once, Score Should be Love Fifteen", () => {
@@ -53,19 +50,15 @@ describe(("<TennisGame/> Game functionality"), () => {
     expect(scoreLabel.text()).toEqual("Love,Fifteen");
   });
   it("On Player 2 Scores twice, Score Should be Love Thirty", () => {
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
+    clickThe(player2ScoreButton, 2);
     expect(scoreLabel.text()).toEqual("Love,Thirty");
   });
   it("On Player 2 Scores thrice, Score Should be Love Forty", () => {
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
+    clickThe(player2ScoreButton, 3);
     expect(scoreLabel.text()).toEqual("Love,Forty");
   });
   it("On Player 1 Scores twice and Player 2 Scores once, Score Should be Thirty Fifteen", () => {
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
+    clickThe(player1ScoreButton, 2);
     player2ScoreButton.simulate('click');
     expect(scoreLabel.text()).toEqual("Thirty,Fifteen");
   });
@@ -75,76 +68,45 @@ describe(("<TennisGame/> Game functionality"), () => {
     expect(scoreLabel.text()).toEqual("Fifteen all");
   });
   it("On both Players Scores twice, Score Should be Thirty all", () => {
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
+    clickThe(player1ScoreButton, 2);
+    clickThe(player2ScoreButton, 2);
     expect(scoreLabel.text()).toEqual("Thirty all");
   });
   it("On both Players Scores thrice, Score Should be Deuce", () => {
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
+    clickThe(player1ScoreButton, 3);
+    clickThe(player2ScoreButton, 3);
     expect(scoreLabel.text()).toEqual("Deuce");
   });
   it("On Player 1 Scores four times and Player 2 Scores thrice, Score Should be Advantage Player 1", () => {
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
+    clickThe(player1ScoreButton, 3);
+    clickThe(player2ScoreButton, 3);
     player1ScoreButton.simulate('click');
     expect(scoreLabel.text()).toEqual("Advantage Player 1");
   });
   it("On Player 1 Scores thrice and Player 2 Scores four times, Score Should be Advantage Player 2", () => {
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
+    clickThe(player1ScoreButton, 3);
+    clickThe(player2ScoreButton, 4);
     expect(scoreLabel.text()).toEqual("Advantage Player 2");
   });
   it("On Player 1 Scores four times, Score Should be Player 1 wins", () => {
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
+    clickThe(player1ScoreButton, 4);
     expect(scoreLabel.text()).toEqual("Player 1 wins");
   });
   it("On Player 1 Scores thrice and Player 2 scores five times, Score Should be Player 2 wins", () => {
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    expect(scoreLabel.text()).toEqual("Player 2 wins");
-  });
-  it("On Player 1 Scores thrice and Player 2 scores five times, Score Should be Player 2 wins", () => {
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
+    clickThe(player1ScoreButton, 3);
+    clickThe(player2ScoreButton, 5);
     expect(scoreLabel.text()).toEqual("Player 2 wins");
   });
   it("On Reset the Game, Score Should be Love All", () => {
-    player1ScoreButton.simulate('click');
-    player1ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
-    player2ScoreButton.simulate('click');
+    clickThe(player1ScoreButton, 2);
+    clickThe(player2ScoreButton, 2);
     wrapper.find("button").at(2).simulate('click');
     expect(scoreLabel.text()).toEqual("Love all");
   });
 });
+
+function clickThe(button, times) {
+  for (let index = 0; index < times; index++) {
+    button.simulate('click');
+  }
+}

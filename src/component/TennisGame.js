@@ -7,25 +7,17 @@ export default class TennisGame extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            player1: {
-                name: "Player 1",
-                score: 0
-            },
-            player2: {
-                name: "Player 2",
-                score: 0
-            },
+            player1Score: 0,
+            player2Score: 0,
             isGameOver: false
         }
     }
 
     incrementScore = player => {
         this.setState((prevState) => (
-            player === prevState.player1.name ? {
-                player1: { ...prevState.player1, score: prevState.player1.score + 1 }
-            } : {
-                    player2: { ...prevState.player2, score: prevState.player2.score + 1 }
-                }));
+            player === Constants.PLAYER1_NAME ? { player1Score: prevState.player1Score + 1 } : {
+                player2Score: prevState.player2Score + 1
+            }));
     }
 
     notifyGameOver = () => {
@@ -35,30 +27,22 @@ export default class TennisGame extends React.Component {
     }
 
     resetGame = () => {
-        this.setState({
-            player1: {
-                name: "Player 1",
-                score: 0
-            },
-            player2: {
-                name: "Player 2",
-                score: 0
-            },
+        this.setState({player1Score: 0,
+            player2Score: 0,
             isGameOver: false
         });
     }
 
     render() {
-        const { player1, player2 } = this.state;
         return (
             <div>
                 <div className="playerContainer">
                     <div className="leftContainer">
-                        <Player name={player1.name} onUpdateScore={this.incrementScore} isGameOver={this.state.isGameOver} />
+                        <Player name={Constants.PLAYER1_NAME} onUpdateScore={this.incrementScore} isGameOver={this.state.isGameOver} />
                     </div>
-                    <Player name={player2.name} onUpdateScore={this.incrementScore} isGameOver={this.state.isGameOver} />
+                    <Player name={Constants.PLAYER2_NAME} onUpdateScore={this.incrementScore} isGameOver={this.state.isGameOver} />
                 </div>
-                <Scorer player1Score={player1.score} player2Score={player2.score} onGameOver={this.notifyGameOver} />
+                <Scorer player1Score={this.state.player1Score} player2Score={this.state.player2Score} onGameOver={this.notifyGameOver} />
                 <br /><button onClick={this.resetGame}>{Constants.RESET_BUTTON_TEXT}</button>
             </div>);
     }
