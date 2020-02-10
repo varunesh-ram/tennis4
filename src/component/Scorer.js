@@ -24,7 +24,7 @@ export default class Scorer extends React.Component {
             if (player1Score <= Constants.MAX_LOOKUP_INDEX && player2Score <= Constants.MAX_LOOKUP_INDEX)
                 return this.getScoreFromLookUp();
         }
-        if (player1Score === 1)
+        if (player1Score <= 2)
             return this.getAllScoreFromLookUp();
     }
 
